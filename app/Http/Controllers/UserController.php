@@ -26,16 +26,6 @@ class UserController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return Response
-     */
-    public function create(): Response
-    {
-        return response()->view('users.form');
-    }
-
-    /**
      * Store a newly created resource in storage.
      *
      * @param  StoreRequest  $request
@@ -46,13 +36,23 @@ class UserController extends Controller
         $validated = $request->validated();
         // hardcoded password
         $validated['password'] = Hash::make(12345678);
-        $create = User::create($validated);
+        $create                = User::create($validated);
 
-        if($create) {
+        if ($create) {
             return redirect()->route('users.index');
         }
 
         return response('Not found', 404);
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return Response
+     */
+    public function create(): Response
+    {
+        return response()->view('users.form');
     }
 
     /**
