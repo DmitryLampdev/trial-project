@@ -2,7 +2,9 @@
 
 namespace App\Providers;
 
+use App\Models\Settings;
 use Illuminate\Support\ServiceProvider;
+use Illuminate\View\View;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -23,6 +25,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        // set settings for the tenant title
+        setting()->set('tenant_title', Settings::all()->keyBy('key'));
     }
 }

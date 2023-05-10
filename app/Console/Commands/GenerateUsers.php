@@ -2,6 +2,7 @@
 
 namespace App\Console\Commands;
 
+use App\Models\Settings;
 use App\Models\Tenant;
 use App\Models\User;
 use App\Models\UserRole;
@@ -49,6 +50,13 @@ class GenerateUsers extends Command
         // create tenants with factory
         $tenants = Tenant::factory()->count(4)->create();
 
+        // create Settings
+
+        Settings::create([
+            'key'   => 'tenant_title',
+            'value' => 'My tenant'
+        ]);
+
         // set random user data with meta
         foreach ($users as $user) {
             $meta = [
@@ -68,13 +76,13 @@ class GenerateUsers extends Command
 
 
         // Simply set up randomly tenant for every user
-        foreach ($users as $user)
-        {
+        foreach ($users as $user) {
             foreach ($tenants as $tenant) {
                 // randomly making them multiple
                 $tenant->users()->attach($user->id);
             }
         }
 
+        $this->output->write('The data has been added.', true);
     }
 }

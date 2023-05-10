@@ -7,6 +7,15 @@
                 <div class="shrink-0 flex items-center">
                     <a href="{{ route('dashboard') }}">
                         <x-application-logo class="block h-10 w-auto fill-current text-gray-600" />
+                        @if (setting()->get('tenant_title'))
+                            @foreach(setting()->get('tenant_title') as $settings)
+                                <a href="{{ route('dashboard') }}" class=' @if ($settings->key == 'tenant_title') font-bold @endif
+                                        block px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 transition duration-150 ease-in-out'>
+                                    {{ $settings->value }}
+                                </a>
+                            @endforeach
+                        @endif
+
                     </a>
                 </div>
 
