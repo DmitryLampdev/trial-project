@@ -62,3 +62,14 @@ If you discover a security vulnerability within Laravel, please send an e-mail t
 ## License
 
 The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+
+
+## This test project can be launched with Laravel Sail.
+
+Simple steps to run it on local env:
+
+1. To run the server **sail up -d** 
+2. To run migrations **sail artisan migrate**
+3. To add randomly data and seed tables with users and tenants you'll need to run console command
+**sail artisan users:generate**
+4. After that you can log in with every user using email and password **12345678**
