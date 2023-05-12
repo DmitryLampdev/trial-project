@@ -7,10 +7,10 @@ use Illuminate\Http\Request;
 
 class TenantController extends Controller
 {
-    public function changeTenant($tenantId): RedirectResponse
+    public function changeTenant($tenantHash): RedirectResponse
     {
-        auth()->user()->tenants()->findOrFail($tenantId);
-        auth()->user()->update(['current_tenant_id' => $tenantId]);
+        $tenant = auth()->user()->tenants()->firstWhere('tenant_hash', $tenantHash);
+        auth()->user()->update(['current_tenant_id' => $tenant->id]);
 
         return redirect()->route('dashboard');
     }

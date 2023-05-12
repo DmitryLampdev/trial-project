@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Support\Str;
 
 class TenantFactory extends Factory
 {
@@ -15,6 +16,7 @@ class TenantFactory extends Factory
     {
         return [
             'name' => $this->faker->domainName(),
+            'tenant_hash' => (string) Str::uuid()
         ];
     }
 }

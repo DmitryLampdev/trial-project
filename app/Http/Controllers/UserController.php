@@ -109,4 +109,14 @@ class UserController extends Controller
     {
         //
     }
+
+    /**
+     * API for getting Users List
+     *  
+     * @return array
+     */
+
+    public function getUsers() {
+        return User::all()->toArray();
+    }
 }
